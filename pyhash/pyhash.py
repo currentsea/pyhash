@@ -55,6 +55,21 @@ def fnv1_64(string, seed=0):
 	return hash
 
 
+def fnv1_128(string, seed=0):
+	"""
+	Returns: The FNV-1 hash of a given string. 
+	"""
+	#Constants
+	FNV_prime = 309485009821345068724781371
+	offset_basis = 144066263297769815596495629667062367629
+
+	#FNV-1a Hash Function
+	hash = offset_basis + seed
+	for char in string:
+ 		hash = hash * FNV_prime
+		hash = hash ^ ord(char)
+	return hash
+
 def fnv1a_64(string, seed=0):
 	"""
 	Returns: The FNV-1a (alternate) hash of a given string
@@ -76,7 +91,7 @@ def main():
 	"""
 	Testing application: Do something
 	"""
-	print fnv1a_32("lol", 2)
+	print fnv1_128("test")
 
 if __name__ == '__main__':
 	main()
